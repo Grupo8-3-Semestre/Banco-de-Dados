@@ -73,7 +73,7 @@ CREATE TABLE comentario (
 	id INT PRIMARY KEY IDENTITY(1,1),
 	descricao VARCHAR(1000),
     momento_comentario DATETIME DEFAULT GETDATE(),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
+	usuario_id INT FOREIGN KEY REFERENCES usuario(id)
 );
 CREATE TABLE lista (
 	id INT PRIMARY KEY IDENTITY(1,1),
@@ -81,10 +81,16 @@ CREATE TABLE lista (
 ); 
 CREATE TABLE lista_tabela (
 	id INT PRIMARY KEY IDENTITY(1,1),
-	fk_usuario INT FOREIGN KEY REFERENCES usuario(id),
-	fk_lista INT FOREIGN KEY REFERENCES lista(id),
+	usuario_id INT FOREIGN KEY REFERENCES usuario(id),
+	lista_filme_id INT FOREIGN KEY REFERENCES lista(id),
     tmdb_id_filme INT
 );
+
+CREATE TABLE votacao (
+	id INT PRIMARY KEY IDENTITY(1,1),
+    avaliacao INT,
+    usuario_id INT FOREIGN KEY REFERENCES usuario(id),
+    tmdb_id_filme INT);
 
 
 
